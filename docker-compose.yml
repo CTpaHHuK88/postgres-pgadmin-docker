@@ -11,7 +11,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 #    networks:
 #      - app-network
     restart: unless-stopped
@@ -28,19 +28,19 @@ services:
     volumes:
       - pgadmin_data:/var/lib/pgadmin
 
-  octoprint:
-    image: octoprint/octoprint
-    container_name: octoprint_cont
-    restart: unless-stopped
-    ports:
-      - "5000:80"
-    volumes:
-      - ./data:/octoprint
-      - /dev/ttyUSB0:/dev/ttyUSB0
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
-    environment:
-      - ENABLE_MJPG_STREAMER=true
+#  octoprint:
+#    image: octoprint/octoprint
+#    container_name: octoprint_cont
+#    restart: unless-stopped
+#    ports:
+#      - "5000:80"
+#    volumes:
+#      - ./data:/octoprint
+#      - /dev/ttyUSB0:/dev/ttyUSB0
+#    devices:
+#      - /dev/ttyUSB0:/dev/ttyUSB0
+#    environment:
+#      - ENABLE_MJPG_STREAMER=true
 
 volumes:
   postgres_data:
