@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     ports:
-      - "${POSTGRES_PORT}:5432" # По умолчанию 5432:5432, но можно изменить в .env
+      - "${POSTGRES_PORT}" # По умолчанию 5432:5432, но можно изменить в .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql # Раскомментировано для инициализации БД
@@ -25,7 +25,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     ports:
-      - "${PGADMIN_PORT}:80" # По умолчанию 8080:80
+      - "${PGADMIN_PORT}" # По умолчанию 8080:80
     depends_on:
       postgres:
         condition: service_healthy # Ждем, пока Postgres не пройдет healthcheck
